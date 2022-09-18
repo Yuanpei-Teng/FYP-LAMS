@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://cdn.staticfile.org/axios/0.19.2/axios.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- import JavaScript -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <title>Account Activation</title>
+</head>
+<body>
+<el-card>
+    {% if code == 200 %}
+    <h1>Account activated! You can login Now ! This page will jump to login page in 3 seconds...</h1>
+    <h3>Otherwise, Please click the link <a href="http://localhost:8081/#/">to Login</a></h3>
+    <p style="display:none;" id="code">{[code]}</p>
+    {% else %}
+    <h1>Account activation failed ! Please contact the Admin!</h1>
+    <h3>{[msg]}</h3>
+    {% endif %}
+</el-card>
+</body>
+</html>
+
+<script>
+
+    var code = document.getElementById("code").innerHTML
+    if(code === "200"){
+    setInterval(window.location.href = "http://localhost:8081/#/",3000)
+    }
+
+
+</script>
+<style>
+    .el-card {
+        width: 500px;
+        height: 200px;
+        margin: 0 auto;
+        margin-top: 15%;
+    }
+
+</style>
